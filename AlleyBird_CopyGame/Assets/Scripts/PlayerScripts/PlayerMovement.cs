@@ -19,7 +19,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         int sign = isLeftDirection == true ? -1 : 1; ;
-        transform.position = new Vector3(transform.position.x + (sign * speed / 10000), 0, 0);
+        transform.position = new Vector3(transform.position.x + (sign * speed / 10000), transform.position.y, transform.position.z);
     }
 
     void RotatePlayer()
@@ -32,22 +32,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        //Vector3 collPosition = collision.transform.position;
-
-        //if (collPosition.x > transform.position.x)
-        //{
-        //    RotatePlayer();
-        //    isLeftDirection = true;
-        //}
-        //else
-        //{
-        //    RotatePlayer();
-        //    isLeftDirection = false;
-        //}
-
-        RotatePlayer();
-
-
-
+        if (!collision.gameObject.CompareTag("Block"))
+            RotatePlayer();
     }
 }
