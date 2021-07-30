@@ -5,36 +5,49 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField]
-    GameObject player;
-
-    private Transform _transform;
-
-    [SerializeField]
     private float speed = 100;
+
+    private bool isLeftDirection = true;
 
 
     void Start()
     {
-        _transform = player.transform;
+
     }
 
 
     void Update()
     {
-        _transform.position = new Vector3(_transform.position.x - (speed / 10000), 0, 0);
+        int sign = isLeftDirection == true ? -1 : 1; ;
+        transform.position = new Vector3(transform.position.x + (sign * speed / 10000), 0, 0);
     }
 
     void RotatePlayer()
-    {
-        Vector3 theScale = _transform.localScale;
+    {        
+        isLeftDirection = !isLeftDirection;
+        Vector3 theScale = transform.localScale;
         theScale.x *= -1;
-        _transform.localScale = theScale;
+        transform.localScale = theScale;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Vector3 collPosition = collision.transform.position;
+        //Vector3 collPosition = collision.transform.position;
 
-        
+        //if (collPosition.x > transform.position.x)
+        //{
+        //    RotatePlayer();
+        //    isLeftDirection = true;
+        //}
+        //else
+        //{
+        //    RotatePlayer();
+        //    isLeftDirection = false;
+        //}
+
+        RotatePlayer();
+
+
+
     }
 }
