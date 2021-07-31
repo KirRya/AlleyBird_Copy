@@ -4,10 +4,7 @@ using UnityEngine;
 
 public class ObjectPool : MonoBehaviour
 {
-    [SerializeField]
-    static ObjectPool SharedInstance;
-
-    [SerializeField]
+    public static ObjectPool SharedInstance;
     List<GameObject> pooledObjects;
 
     [SerializeField]
@@ -31,6 +28,8 @@ public class ObjectPool : MonoBehaviour
         for (int i = 0; i < amountToPool; i++)
         {
             tmp = Instantiate(objectToPool, parent);
+            tmp.tag = "Block";
+            tmp.layer = 6;
             tmp.SetActive(false);
             pooledObjects.Add(tmp);
         }
