@@ -11,9 +11,13 @@ public class BlockSpawner : MonoBehaviour
 
     private float increaseAxisY;
 
+    private const float spawnerRange = 1.5f;
+
     void Start()
     {
+        increaseAxisY = player.transform.position.y;
         Invoke("FirstSpawn", delay);
+        //Invoke("Check", 1f);
     }
 
     void Update()
@@ -23,13 +27,23 @@ public class BlockSpawner : MonoBehaviour
 
     public void FirstSpawn()
     {
-        increaseAxisY = player.transform.position.y;
-
-        GameObject block = ObjectPool.SharedInstance.GetPooledObject();
-        if(block != null)
+        for (int i = 0; i < ObjectPool.SharedInstance.amountToPool; i++)
         {
-            block.transform.position = new Vector2(0, increaseAxisY + 1.5f);
-            block.SetActive(true);
+            increaseAxisY += spawnerRange;
+
+            GameObject block = ObjectPool.SharedInstance.GetPooledObject();
+            if (block != null)
+            {
+                block.transform.position = new Vector2(0, increaseAxisY);
+                block.SetActive(true);
+            }
         }
     }
+    
+    //public void Check()
+    //{
+    //    ObjectPool.SharedInstance.TryToOffRB();
+    //}
+
+    
 }

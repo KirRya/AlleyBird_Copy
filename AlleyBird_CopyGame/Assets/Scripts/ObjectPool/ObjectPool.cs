@@ -11,7 +11,7 @@ public class ObjectPool : MonoBehaviour
     GameObject objectToPool;
 
     [SerializeField]
-    int amountToPool;
+    public int amountToPool;
 
     [SerializeField]
     Transform parent;
@@ -45,4 +45,29 @@ public class ObjectPool : MonoBehaviour
 
         return null;
     }
+
+    public void ReturnToPool()
+    {
+        for (int i = 0; i < amountToPool; i++)
+        {
+            if (pooledObjects[i].activeInHierarchy)
+            {
+                pooledObjects[i].SetActive(false);
+                break;
+            }
+        }
+    }
+
+
+    //public void TryToOffRB()
+    //{
+    //    for (int i = 0; i < amountToPool; i++)
+    //    {
+    //        if (pooledObjects[i].activeInHierarchy)
+    //        {
+    //            pooledObjects[i].GetComponent<BoxCollider2D>().enabled = false;
+    //            break;
+    //        }
+    //    }
+    //}
 }
