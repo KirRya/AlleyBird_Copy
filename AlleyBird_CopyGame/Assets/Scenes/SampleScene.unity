@@ -178,7 +178,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.1, y: 10}
+  m_Size: {x: 0.1, y: 10000}
   m_EdgeRadius: 0
 --- !u!1 &403235319
 GameObject:
@@ -464,7 +464,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.1, y: 10}
+  m_Size: {x: 0.1, y: 10000}
   m_EdgeRadius: 0
 --- !u!1 &935386999
 GameObject:
@@ -748,7 +748,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1872808040}
   - component: {fileID: 1872808039}
-  - component: {fileID: 1872808041}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -768,7 +767,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2c3116cdb64b4748946c342a40f1f0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectToPool: {fileID: 8822007608950369731, guid: 8af6af77e735e564496f0f1e2367401e, type: 3}
+  objectToPool: {fileID: -5461642166912045113, guid: 8af6af77e735e564496f0f1e2367401e, type: 3}
   amountToPool: 10
   parent: {fileID: 1068503596}
 --- !u!4 &1872808040
@@ -785,19 +784,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1872808041
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1872808038}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c24b56282dcb8ed4d9ad129a9a6b0553, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 1681873113}
 --- !u!1001 &8597742161790562633
 PrefabInstance:
   m_ObjectHideFlags: 0

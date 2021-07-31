@@ -17,7 +17,7 @@ public class BlockSpawner : MonoBehaviour
     {
         increaseAxisY = player.transform.position.y;
         Invoke("FirstSpawn", delay);
-        //Invoke("Check", 1f);
+        Invoke("Check", 3f);
     }
 
     void Update()
@@ -31,19 +31,19 @@ public class BlockSpawner : MonoBehaviour
         {
             increaseAxisY += spawnerRange;
 
-            GameObject block = ObjectPool.SharedInstance.GetPooledObject();
+            BlockView block = ObjectPool.SharedInstance.GetPooledObject();
             if (block != null)
             {
-                block.transform.position = new Vector2(0, increaseAxisY);
-                block.SetActive(true);
+                block.prefab.transform.position = new Vector2(0, increaseAxisY);
+                block.prefab.SetActive(true);
             }
         }
     }
-    
-    //public void Check()
-    //{
-    //    ObjectPool.SharedInstance.TryToOffRB();
-    //}
 
-    
+    public void Check()
+    {
+        ObjectPool.SharedInstance.TryToOffRB();
+    }
+
+
 }

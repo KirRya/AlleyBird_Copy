@@ -5,10 +5,10 @@ using UnityEngine;
 public class ObjectPool : MonoBehaviour
 {
     public static ObjectPool SharedInstance;
-    List<GameObject> pooledObjects;
+    List<BlockView> pooledObjects;
 
     [SerializeField]
-    GameObject objectToPool;
+    BlockView objectToPool;
 
     [SerializeField]
     public int amountToPool;
@@ -23,23 +23,23 @@ public class ObjectPool : MonoBehaviour
 
     void Start()
     {
-        pooledObjects = new List<GameObject>();
-        GameObject tmp;
+        pooledObjects = new List<BlockView>();
+        BlockView tmp;
         for (int i = 0; i < amountToPool; i++)
         {
             tmp = Instantiate(objectToPool, parent);
-            tmp.tag = "Block";
-            tmp.layer = 6;
-            tmp.SetActive(false);
+            tmp.prefab.tag = "Block";
+            tmp.prefab.layer = 6;
+            tmp.prefab.SetActive(false);
             pooledObjects.Add(tmp);
         }
     }
 
-    public GameObject GetPooledObject()
+    public BlockView GetPooledObject()
     {
         for (int i = 0; i < amountToPool; i++)
         {
-            if (!pooledObjects[i].activeInHierarchy)
+            if (!pooledObjects[i].prefab.activeInHierarchy)
                 return pooledObjects[i];
         }
 
@@ -50,24 +50,24 @@ public class ObjectPool : MonoBehaviour
     {
         for (int i = 0; i < amountToPool; i++)
         {
-            if (pooledObjects[i].activeInHierarchy)
+            if (pooledObjects[i].prefab.activeInHierarchy)
             {
-                pooledObjects[i].SetActive(false);
+                pooledObjects[i].prefab.SetActive(false);
                 break;
             }
         }
     }
 
 
-    //public void TryToOffRB()
-    //{
-    //    for (int i = 0; i < amountToPool; i++)
-    //    {
-    //        if (pooledObjects[i].activeInHierarchy)
-    //        {
-    //            pooledObjects[i].GetComponent<BoxCollider2D>().enabled = false;
-    //            break;
-    //        }
-    //    }
-    //}
+    public void TryToOffRB()
+    {
+        for (int i = 0; i < amountToPool; i++)
+        {
+            if (pooledObjects[i].prefab.activeInHierarchy)
+            {
+                pooledObjects[i].boxCollider.enabled = false;
+                break;
+            }
+        }
+    }
 }
