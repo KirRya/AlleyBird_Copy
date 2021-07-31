@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private Rigidbody2D rb;
     //[SerializeField]
-    //private BoxCollider2D collider;
+    //private BoxCollider2D boxCollider;
 
     private string blockTag = "Block";
 

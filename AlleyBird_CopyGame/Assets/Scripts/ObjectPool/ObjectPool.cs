@@ -57,17 +57,4 @@ public class ObjectPool : MonoBehaviour
             }
         }
     }
-
-
-    public void TryToOffRB()
-    {
-        for (int i = 0; i < amountToPool; i++)
-        {
-            if (pooledObjects[i].prefab.activeInHierarchy)
-            {
-                pooledObjects[i].boxCollider.enabled = false;
-                break;
-            }
-        }
-    }
 }

@@ -11,13 +11,12 @@ public class BlockSpawner : MonoBehaviour
 
     private float increaseAxisY;
 
-    private const float spawnerRange = 1.5f;
+    private const float spawnerRange = 2.0f;
 
     void Start()
     {
         increaseAxisY = player.transform.position.y;
         Invoke("FirstSpawn", delay);
-        Invoke("Check", 3f);
     }
 
     void Update()
@@ -39,11 +38,4 @@ public class BlockSpawner : MonoBehaviour
             }
         }
     }
-
-    public void Check()
-    {
-        ObjectPool.SharedInstance.TryToOffRB();
-    }
-
-
 }
