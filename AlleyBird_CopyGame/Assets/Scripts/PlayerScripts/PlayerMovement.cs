@@ -9,17 +9,47 @@ public class PlayerMovement : MonoBehaviour
 
     private bool isLeftDirection = true;
 
+    [SerializeField]
+    private Rigidbody2D rb;
+    //[SerializeField]
+    //private BoxCollider2D collider;
+
+    private string blockTag = "Block";
+
+    private bool isOnGround = true;
+    [SerializeField]
+    Transform groundCheck;
+    [SerializeField]
+    float checkRadius;
+    [SerializeField]
+    LayerMask groundDefinition;
+
+
+    int extraJumpCount;
+    [SerializeField]
+    int extraJumpCountValue;
+    [SerializeField]
+    float jumpForce;
 
     void Start()
     {
-
+        extraJumpCount = extraJumpCountValue;
     }
 
-
-    void Update()
+    private void Update()
     {
-        int sign = isLeftDirection == true ? -1 : 1; ;
-        transform.position = new Vector3(transform.position.x + (sign * speed / 10000), transform.position.y, transform.position.z);
+        if (isOnGround == true)
+            extraJumpCount = extraJumpCountValue;
+
+        if (Input.GetKeyDown(KeyCode.Space) && extraJumpCount > 0)
+        {
+            rb.velocity = Vector2.up * jumpForce;
+            extraJumpCount--;
+        }
+        else if(Input.GetKeyDown(KeyCode.Space) && extraJumpCount == 0 && isOnGround == true)
+        {
+            rb.velocity = Vector2.up * jumpForce;
+        }
     }
 
     void RotatePlayer()
@@ -32,7 +62,15 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (!collision.gameObject.CompareTag("Block"))
+        if (!collision.gameObject.CompareTag(blockTag))
             RotatePlayer();
+    }
+
+    void FixedUpdate()
+    {
+        isOnGround = Physics2D.OverlapCircle(groundCheck.position, checkRadius, groundDefinition);
+
+        int sign = isLeftDirection == true ? -1 : 1; ;
+        transform.position = new Vector3(transform.position.x + (sign * speed / 1000), transform.position.y, transform.position.z);
     }
 }
