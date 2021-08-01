@@ -36,4 +36,18 @@ public class BlockSpawner : MonoBehaviour
             }
         }
     }
+
+    public void RespawnOneBlock()
+    {
+        ObjectPool.SharedInstance.ReturnToPool();
+
+        increaseAxisY += spawnerRange;
+
+        BlockView block = ObjectPool.SharedInstance.GetPooledObject();
+        if (block != null)
+        {
+            block.prefab.transform.position = new Vector2(0, increaseAxisY);
+            block.prefab.SetActive(true);
+        }
+    }
 }

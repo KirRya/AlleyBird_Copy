@@ -46,15 +46,23 @@ public class ObjectPool : MonoBehaviour
         return null;
     }
 
+    int counterPooledObject = 0;
+
     public void ReturnToPool()
     {
-        for (int i = 0; i < amountToPool; i++)
-        {
-            if (pooledObjects[i].prefab.activeInHierarchy)
-            {
-                pooledObjects[i].prefab.SetActive(false);
-                break;
-            }
-        }
+        //for (int i = 0; i < amountToPool; i++)
+        //{
+        //    if (pooledObjects[i].prefab.activeInHierarchy)
+        //    {
+        //        pooledObjects[i].prefab.SetActive(false);
+        //        break;
+        //    }
+        //}
+
+        if (counterPooledObject >= amountToPool)
+            counterPooledObject = 0;
+
+        pooledObjects[counterPooledObject].prefab.SetActive(false);
+        counterPooledObject++;
     }
 }

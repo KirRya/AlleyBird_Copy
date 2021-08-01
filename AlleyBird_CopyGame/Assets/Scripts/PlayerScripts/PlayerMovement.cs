@@ -40,6 +40,11 @@ public class PlayerMovement : MonoBehaviour
     const float banJumpTimer = 1.5f;
 
 
+    [SerializeField]
+    BlockSpawner spawner;
+
+    bool shouldRespawn = false;
+    int totalJumpCount = 0;
 
 
     void Start()
@@ -70,9 +75,13 @@ public class PlayerMovement : MonoBehaviour
         //    rb.velocity = Vector2.up * jumpForce;
         //}
 
+        if (!shouldRespawn && totalJumpCount > 3)
+            shouldRespawn = true;
+
 
         if (Input.GetKeyDown(KeyCode.Space) && canJump)
         {
+            totalJumpCount++;
             rb.velocity = Vector2.up * jumpForce;
             canJump = false;
             Invoke("JumpAllow", banJumpTimer);
@@ -82,12 +91,15 @@ public class PlayerMovement : MonoBehaviour
     void JumpAllow()
     {
         canJump = true;
+        Debug.Log("despawn + " + totalJumpCount);
+        if(shouldRespawn)
+            spawner.RespawnOneBlock();
     }
 
-    void GetDown()
-    {
-        rb.velocity = Vector2.down * getDownForce * jumpForce;
-    }
+    //void GetDown()
+    //{
+    //    rb.velocity = Vector2.down * getDownForce * jumpForce;
+    //}
 
     void RotatePlayer()
     {        

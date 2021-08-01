@@ -1203,7 +1203,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   extraJumpCountValue: 1
-  jumpForce: 1.5
+  jumpForce: 1.45
+  spawner: {fileID: 1872808041}
 --- !u!1 &1872808038
 GameObject:
   m_ObjectHideFlags: 0
@@ -1235,7 +1236,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectToPool: {fileID: -5461642166912045113, guid: 8af6af77e735e564496f0f1e2367401e, type: 3}
-  amountToPool: 10
+  amountToPool: 6
   parent: {fileID: 1068503596}
 --- !u!4 &1872808040
 Transform:
@@ -1411,6 +1412,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 935387003}
     m_Modifications:
+    - target: {fileID: -3129704030800386889, guid: 8af6af77e735e564496f0f1e2367401e, type: 3}
+      propertyPath: m_Offset.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8822007608950369731, guid: 8af6af77e735e564496f0f1e2367401e, type: 3}
       propertyPath: m_Name
       value: Block
