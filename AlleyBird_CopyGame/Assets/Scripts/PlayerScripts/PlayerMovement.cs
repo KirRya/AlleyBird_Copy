@@ -35,6 +35,13 @@ public class PlayerMovement : MonoBehaviour
     const float getDownForce = 5f;
     const float speedConverter = 1000f;
 
+
+    private bool canJump = true;
+    const float banJumpTimer = 1.5f;
+
+
+
+
     void Start()
     {
         extraJumpCount = extraJumpCountValue;
@@ -42,19 +49,39 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        if (isOnGround == true)
-            extraJumpCount = extraJumpCountValue;
+        //if (isOnGround == true)
+        //    extraJumpCount = extraJumpCountValue;
 
-        if (Input.GetKeyDown(KeyCode.Space) && extraJumpCount > 0)
-        {
-            rb.velocity = Vector2.up * jumpForce;
-            extraJumpCount--;
-            Invoke("GetDown", getDownInterval);
-        }
-        //else if(Input.GetKeyDown(KeyCode.Space) && extraJumpCount == 0 && isOnGround == true)
+        ////latest check
+        ////Input.GetKeyDown(KeyCode.Space) && extraJumpCount > 0
+
+        //if (Input.GetKeyDown(KeyCode.Space) && extraJumpCount > 0)
         //{
+        //    if (isOnGround == true)
+        //        Debug.Log("Ты перепрыгнул");
+
+        //    rb.velocity = Vector2.up * jumpForce;
+        //    extraJumpCount--;
+        //    //Invoke("GetDown", getDownInterval);
+        //}
+        //else if (Input.GetKeyDown(KeyCode.Space) && extraJumpCount == 0 && isOnGround == true)
+        //{
+
         //    rb.velocity = Vector2.up * jumpForce;
         //}
+
+
+        if (Input.GetKeyDown(KeyCode.Space) && canJump)
+        {
+            rb.velocity = Vector2.up * jumpForce;
+            canJump = false;
+            Invoke("JumpAllow", banJumpTimer);
+        }
+    }
+
+    void JumpAllow()
+    {
+        canJump = true;
     }
 
     void GetDown()

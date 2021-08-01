@@ -680,6 +680,11 @@ Transform:
   m_Father: {fileID: 437698519}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &812939678 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8822007608950369731, guid: 8af6af77e735e564496f0f1e2367401e, type: 3}
+  m_PrefabInstance: {fileID: 8822007608525680729}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &935386999
 GameObject:
   m_ObjectHideFlags: 0
@@ -1165,7 +1170,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.015477657, y: 0.1653179}
+  m_Offset: {x: 0.015477657, y: 0.18302482}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -1176,7 +1181,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.4299536, y: 2.747636}
+  m_Size: {x: 2.4299536, y: 2.712222}
   m_EdgeRadius: 0
 --- !u!114 &1681873119
 MonoBehaviour:
@@ -1198,7 +1203,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   extraJumpCountValue: 1
-  jumpForce: 1.2
+  jumpForce: 1.5
 --- !u!1 &1872808038
 GameObject:
   m_ObjectHideFlags: 0
@@ -1259,6 +1264,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1681873113}
+  firstBlock: {fileID: 812939678}
 --- !u!1 &1976139057
 GameObject:
   m_ObjectHideFlags: 0
