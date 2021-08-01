@@ -46,6 +46,9 @@ public class PlayerMovement : MonoBehaviour
     bool shouldRespawn = false;
     int totalJumpCount = 0;
 
+    [SerializeField]
+    GameObject tutorialScreen;
+
 
     void Start()
     {
@@ -81,6 +84,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space) && canJump)
         {
+            tutorialScreen.SetActive(false);
             totalJumpCount++;
             rb.velocity = Vector2.up * jumpForce;
             canJump = false;
@@ -91,7 +95,6 @@ public class PlayerMovement : MonoBehaviour
     void JumpAllow()
     {
         canJump = true;
-        Debug.Log("despawn + " + totalJumpCount);
         if(shouldRespawn)
             spawner.RespawnOneBlock();
     }
