@@ -7,6 +7,9 @@ public class BlockSpawner : MonoBehaviour
     [SerializeField]
     GameObject player;
 
+    [SerializeField]
+    GameObject firstBlock;
+
     private float delay = 0.01f;
 
     private float increaseAxisY;
@@ -15,13 +18,8 @@ public class BlockSpawner : MonoBehaviour
 
     void Start()
     {
-        increaseAxisY = player.transform.position.y;
+        increaseAxisY = firstBlock.transform.position.y;
         Invoke("FirstSpawn", delay);
-    }
-
-    void Update()
-    {
-        
     }
 
     public void FirstSpawn()

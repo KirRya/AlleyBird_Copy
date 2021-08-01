@@ -31,6 +31,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     float jumpForce;
 
+    const float getDownInterval = 1.2f;
+    const float getDownForce = 5f;
+    const float speedConverter = 1000f;
+
     void Start()
     {
         extraJumpCount = extraJumpCountValue;
@@ -45,11 +49,17 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.velocity = Vector2.up * jumpForce;
             extraJumpCount--;
+            Invoke("GetDown", getDownInterval);
         }
-        else if(Input.GetKeyDown(KeyCode.Space) && extraJumpCount == 0 && isOnGround == true)
-        {
-            rb.velocity = Vector2.up * jumpForce;
-        }
+        //else if(Input.GetKeyDown(KeyCode.Space) && extraJumpCount == 0 && isOnGround == true)
+        //{
+        //    rb.velocity = Vector2.up * jumpForce;
+        //}
+    }
+
+    void GetDown()
+    {
+        rb.velocity = Vector2.down * getDownForce * jumpForce;
     }
 
     void RotatePlayer()
@@ -66,11 +76,12 @@ public class PlayerMovement : MonoBehaviour
             RotatePlayer();
     }
 
+
     void FixedUpdate()
     {
         isOnGround = Physics2D.OverlapCircle(groundCheck.position, checkRadius, groundDefinition);
 
         int sign = isLeftDirection == true ? -1 : 1; ;
-        transform.position = new Vector3(transform.position.x + (sign * speed / 1000), transform.position.y, transform.position.z);
+        transform.position = new Vector3(transform.position.x + (sign * speed / speedConverter), transform.position.y, transform.position.z);
     }
 }
