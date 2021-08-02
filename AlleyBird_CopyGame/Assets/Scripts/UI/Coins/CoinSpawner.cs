@@ -12,6 +12,9 @@ public class CoinSpawner : MonoBehaviour
     private const float minSpawnRangeX = -2.35f;
     private const float maxSpawnRangeX = 2.35f;
 
+    [SerializeField]
+    CoinCollecting coinCollecting;
+
     void Start()
     {
         Invoke("FirstSpawn", delay);
@@ -40,6 +43,8 @@ public class CoinSpawner : MonoBehaviour
 
     public void RespawnOneCoin()
     {
+        coinCollecting.CollectOneCoin();
+
         GeneralObjectPool.SharedInstance.ReturnToPool();
 
         IncreasAxis();

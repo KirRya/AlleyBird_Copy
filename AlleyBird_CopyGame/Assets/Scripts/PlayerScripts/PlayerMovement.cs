@@ -56,7 +56,6 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField]
     CoinSpawner coinSpawner;
-    bool shouldRespawnCoins = false;
 
     void Start()
     {
