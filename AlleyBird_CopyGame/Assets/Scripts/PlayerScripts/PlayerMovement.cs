@@ -49,6 +49,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     GameObject tutorialScreen;
 
+    [SerializeField]
+    PlayerScore playerScore;
 
     void Start()
     {
@@ -94,6 +96,7 @@ public class PlayerMovement : MonoBehaviour
 
     void JumpAllow()
     {
+        playerScore.IncreaseScore();
         canJump = true;
         if(shouldRespawn)
             spawner.RespawnOneBlock();
