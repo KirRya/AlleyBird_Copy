@@ -5,9 +5,6 @@ using UnityEngine;
 public class BlockSpawner : MonoBehaviour
 {
     [SerializeField]
-    GameObject player;
-
-    [SerializeField]
     GameObject firstBlock;
 
     private float delay = 0.01f;

@@ -15,6 +15,8 @@ public class PlayerMovement : MonoBehaviour
     //private BoxCollider2D boxCollider;
 
     private string blockTag = "Block";
+    private string coinTag = "Coin";
+    private string enemyTag = "Enemy";
 
     private bool isOnGround = true;
     [SerializeField]
@@ -51,6 +53,10 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField]
     PlayerScore playerScore;
+
+    [SerializeField]
+    CoinSpawner coinSpawner;
+    bool shouldRespawnCoins = false;
 
     void Start()
     {
@@ -119,6 +125,12 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!collision.gameObject.CompareTag(blockTag))
             RotatePlayer();
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag(coinTag))
+            coinSpawner.RespawnOneCoin();
     }
 
 
