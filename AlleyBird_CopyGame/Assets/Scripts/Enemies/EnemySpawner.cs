@@ -50,4 +50,18 @@ public class EnemySpawner : MonoBehaviour
             }
         }
     }
+
+    public void RespawnSingleEnemy()
+    {
+        objectPool.ReturnToPool();
+
+        IncreasAxis();
+
+        GameObject enemy = objectPool.GetPooledObject();
+        if (enemy != null)
+        {
+            enemy.transform.position = increaseVector;
+            enemy.SetActive(true);
+        }
+    }
 }

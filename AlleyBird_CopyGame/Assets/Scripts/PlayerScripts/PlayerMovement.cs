@@ -57,6 +57,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     CoinSpawner coinSpawner;
 
+    [SerializeField]
+    CoinCollecting coinCollecting;
+
     void Start()
     {
         extraJumpCount = extraJumpCountValue;
@@ -130,6 +133,9 @@ public class PlayerMovement : MonoBehaviour
     {
         if (collision.gameObject.CompareTag(coinTag))
             coinSpawner.RespawnOneCoin();
+        if (collision.gameObject.CompareTag(enemyTag))
+            Death();
+
     }
 
 
@@ -139,5 +145,11 @@ public class PlayerMovement : MonoBehaviour
 
         int sign = isLeftDirection == true ? -1 : 1; ;
         transform.position = new Vector3(transform.position.x + (sign * speed / speedConverter), transform.position.y, transform.position.z);
+    }
+
+    void Death()
+    {
+        coinCollecting.RewriteTotalCoins();
+        playerScore.RewriteMaxScore();
     }
 }
