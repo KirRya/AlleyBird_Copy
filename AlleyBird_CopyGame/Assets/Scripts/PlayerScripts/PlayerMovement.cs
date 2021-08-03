@@ -73,10 +73,6 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField]
     DeathMenuShow deathMenu;
-
-    [SerializeField]
-    EnemySpawner enemySpawner;
-
     void Start()
     {
         extraJumpCount = extraJumpCountValue;
@@ -112,8 +108,8 @@ public class PlayerMovement : MonoBehaviour
 
         if (isGameOnProgress)
         {
-            if (!shouldRespawn && totalJumpCount > 3)
-                shouldRespawn = true;
+            //if (!shouldRespawn && totalJumpCount > 3)
+            //    shouldRespawn = true;
 
 
             if (Input.GetKeyDown(KeyCode.Space) && canJump)
@@ -132,8 +128,8 @@ public class PlayerMovement : MonoBehaviour
         IncreaseSpeed();
         playerScore.IncreaseScore();
         canJump = true;
-        if(shouldRespawn)
-            spawner.RespawnOneBlock();
+        //if(shouldRespawn)
+        //    spawner.RespawnOneBlock();
     }
 
     //void GetDown()
