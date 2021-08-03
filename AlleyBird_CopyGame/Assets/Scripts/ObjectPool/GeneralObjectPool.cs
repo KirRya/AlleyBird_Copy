@@ -21,7 +21,7 @@ public class GeneralObjectPool : MonoBehaviour
 
     void Awake()
     {
-        SharedInstance = this;
+        //SharedInstance = this;
     }
 
     void Start()
