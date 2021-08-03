@@ -63,5 +63,7 @@ public class EnemySpawner : MonoBehaviour
             enemy.transform.position = increaseVector;
             enemy.SetActive(true);
         }
+
+        increaseVector.y += enemyOffset;
     }
 }

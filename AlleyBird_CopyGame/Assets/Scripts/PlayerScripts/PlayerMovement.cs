@@ -11,25 +11,11 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField]
     private Rigidbody2D rb;
-    //[SerializeField]
-    //private BoxCollider2D boxCollider;
 
     private string blockTag = "Block";
     private string coinTag = "Coin";
     private string enemyTag = "Enemy";
 
-    private bool isOnGround = true;
-    [SerializeField]
-    Transform groundCheck;
-    [SerializeField]
-    float checkRadius;
-    [SerializeField]
-    LayerMask groundDefinition;
-
-
-    int extraJumpCount;
-    [SerializeField]
-    int extraJumpCountValue;
     [SerializeField]
     float jumpForce;
 
@@ -41,11 +27,6 @@ public class PlayerMovement : MonoBehaviour
     private bool canJump = true;
     const float banJumpTimer = 1.85f;
 
-
-    [SerializeField]
-    BlockSpawner spawner;
-
-    bool shouldRespawn = false;
     int totalJumpCount = 0;
 
     [SerializeField]
@@ -73,10 +54,6 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField]
     DeathMenuShow deathMenu;
-    void Start()
-    {
-        extraJumpCount = extraJumpCountValue;
-    }
 
     void IncreaseSpeed()
     {
@@ -85,33 +62,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        //if (isOnGround == true)
-        //    extraJumpCount = extraJumpCountValue;
-
-        ////latest check
-        ////Input.GetKeyDown(KeyCode.Space) && extraJumpCount > 0
-
-        //if (Input.GetKeyDown(KeyCode.Space) && extraJumpCount > 0)
-        //{
-        //    if (isOnGround == true)
-        //        Debug.Log("Ты перепрыгнул");
-
-        //    rb.velocity = Vector2.up * jumpForce;
-        //    extraJumpCount--;
-        //    //Invoke("GetDown", getDownInterval);
-        //}
-        //else if (Input.GetKeyDown(KeyCode.Space) && extraJumpCount == 0 && isOnGround == true)
-        //{
-
-        //    rb.velocity = Vector2.up * jumpForce;
-        //}
-
         if (isGameOnProgress)
         {
-            //if (!shouldRespawn && totalJumpCount > 3)
-            //    shouldRespawn = true;
-
-
             if (Input.GetKeyDown(KeyCode.Space) && canJump)
             {
                 tutorialScreen.SetActive(false);
@@ -128,14 +80,8 @@ public class PlayerMovement : MonoBehaviour
         IncreaseSpeed();
         playerScore.IncreaseScore();
         canJump = true;
-        //if(shouldRespawn)
-        //    spawner.RespawnOneBlock();
     }
 
-    //void GetDown()
-    //{
-    //    rb.velocity = Vector2.down * getDownForce * jumpForce;
-    //}
 
     void RotatePlayer()
     {        
@@ -165,8 +111,6 @@ public class PlayerMovement : MonoBehaviour
     {
         if (isGameOnProgress)
         {
-            isOnGround = Physics2D.OverlapCircle(groundCheck.position, checkRadius, groundDefinition);
-
             int sign = isLeftDirection == true ? -1 : 1; ;
             transform.position = new Vector3(transform.position.x + (sign * speed / speedConverter), transform.position.y, transform.position.z);
         }

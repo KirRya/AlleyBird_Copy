@@ -19,11 +19,6 @@ public class GeneralObjectPool : MonoBehaviour
     [SerializeField]
     string tagName;
 
-    void Awake()
-    {
-        //SharedInstance = this;
-    }
-
     void Start()
     {
         pooledObjects = new List<GameObject>();
