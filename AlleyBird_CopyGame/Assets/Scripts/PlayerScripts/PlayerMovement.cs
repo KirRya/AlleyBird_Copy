@@ -71,6 +71,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     SpriteRenderer spriteRender;
 
+    [SerializeField]
+    DeathMenuShow deathMenu;
+
     void Start()
     {
         extraJumpCount = extraJumpCountValue;
@@ -172,6 +175,9 @@ public class PlayerMovement : MonoBehaviour
         RotateDeathPlayer();
         coinCollecting.RewriteTotalCoins();
         playerScore.RewriteMaxScore();
+
+        deathMenu.enabled = true;
+        deathMenu.PlayerDeath();
     }
 
     void RotateDeathPlayer()
