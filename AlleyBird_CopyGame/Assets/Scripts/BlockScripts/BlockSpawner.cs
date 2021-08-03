@@ -13,6 +13,9 @@ public class BlockSpawner : MonoBehaviour
 
     private const float spawnerRange = 2.0f;
 
+    [SerializeField]
+    GeneralObjectPool objectPool;
+
     void Start()
     {
         increaseAxisY = firstBlock.transform.position.y;
@@ -21,30 +24,30 @@ public class BlockSpawner : MonoBehaviour
 
     public void FirstSpawn()
     {
-        for (int i = 0; i < ObjectPool.SharedInstance.amountToPool; i++)
+        for (int i = 0; i < objectPool.amountToPool; i++)
         {
             increaseAxisY += spawnerRange;
 
-            BlockView block = ObjectPool.SharedInstance.GetPooledObject();
+            GameObject block = objectPool.GetPooledObject();
             if (block != null)
             {
-                block.prefab.transform.position = new Vector2(0, increaseAxisY);
-                block.prefab.SetActive(true);
+                block.transform.position = new Vector2(0, increaseAxisY);
+                block.SetActive(true);
             }
         }
     }
 
     public void RespawnOneBlock()
     {
-        ObjectPool.SharedInstance.ReturnToPool();
+        objectPool.ReturnToPool();
 
         increaseAxisY += spawnerRange;
 
-        BlockView block = ObjectPool.SharedInstance.GetPooledObject();
+        GameObject block = objectPool.GetPooledObject();
         if (block != null)
         {
-            block.prefab.transform.position = new Vector2(0, increaseAxisY);
-            block.prefab.SetActive(true);
+            block.transform.position = new Vector2(0, increaseAxisY);
+            block.SetActive(true);
         }
     }
 }

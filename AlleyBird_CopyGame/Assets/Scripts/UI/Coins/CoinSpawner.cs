@@ -15,6 +15,9 @@ public class CoinSpawner : MonoBehaviour
     [SerializeField]
     CoinCollecting coinCollecting;
 
+    [SerializeField]
+    GeneralObjectPool objectPool;
+
     void Start()
     {
         Invoke("FirstSpawn", delay);
@@ -22,11 +25,11 @@ public class CoinSpawner : MonoBehaviour
     
     void FirstSpawn()
     {
-        for (int i = 0; i < GeneralObjectPool.SharedInstance.amountToPool; i++)
+        for (int i = 0; i < objectPool.amountToPool; i++)
         {
             IncreasAxis();
 
-            GameObject coin = GeneralObjectPool.SharedInstance.GetPooledObject();
+            GameObject coin = objectPool.GetPooledObject();
             if (coin != null)
             {
                 coin.transform.position = increaseVector;
@@ -45,11 +48,11 @@ public class CoinSpawner : MonoBehaviour
     {
         coinCollecting.CollectOneCoin();
 
-        GeneralObjectPool.SharedInstance.ReturnToPool();
+        objectPool.ReturnToPool();
 
         IncreasAxis();
 
-        GameObject coin = GeneralObjectPool.SharedInstance.GetPooledObject();
+        GameObject coin = objectPool.GetPooledObject();
         if (coin != null)
         {
             coin.transform.position = increaseVector;

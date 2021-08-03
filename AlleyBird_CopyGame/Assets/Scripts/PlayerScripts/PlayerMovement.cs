@@ -39,7 +39,7 @@ public class PlayerMovement : MonoBehaviour
 
 
     private bool canJump = true;
-    const float banJumpTimer = 1.5f;
+    const float banJumpTimer = 1.85f;
 
 
     [SerializeField]
