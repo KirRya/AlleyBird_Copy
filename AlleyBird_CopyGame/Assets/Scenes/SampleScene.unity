@@ -405,7 +405,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 304, y: 915.58}
+  m_AnchoredPosition: {x: 276, y: 915.58}
   m_SizeDelta: {x: 260.59, y: 114.79}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &167407552
@@ -1109,7 +1109,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 110, y: -88}
+  m_AnchoredPosition: {x: 148, y: -88}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &469039894
@@ -1197,7 +1197,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: -61.35749, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -3460,6 +3460,7 @@ MonoBehaviour:
   tutorialScreen: {fileID: 2147218324}
   playerScore: {fileID: 1872808042}
   coinSpawner: {fileID: 1109837350}
+  coinCollecting: {fileID: 1109837353}
 --- !u!1 &1784703656
 GameObject:
   m_ObjectHideFlags: 0

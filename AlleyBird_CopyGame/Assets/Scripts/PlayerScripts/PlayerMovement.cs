@@ -60,6 +60,17 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     CoinCollecting coinCollecting;
 
+    private bool isGameOnProgress = true;
+
+    [SerializeField]
+    Animator animator;
+
+    [SerializeField]
+    Sprite deathPlayer;
+
+    [SerializeField]
+    SpriteRenderer spriteRender;
+
     void Start()
     {
         extraJumpCount = extraJumpCountValue;
@@ -88,17 +99,20 @@ public class PlayerMovement : MonoBehaviour
         //    rb.velocity = Vector2.up * jumpForce;
         //}
 
-        if (!shouldRespawn && totalJumpCount > 3)
-            shouldRespawn = true;
-
-
-        if (Input.GetKeyDown(KeyCode.Space) && canJump)
+        if (isGameOnProgress)
         {
-            tutorialScreen.SetActive(false);
-            totalJumpCount++;
-            rb.velocity = Vector2.up * jumpForce;
-            canJump = false;
-            Invoke("JumpAllow", banJumpTimer);
+            if (!shouldRespawn && totalJumpCount > 3)
+                shouldRespawn = true;
+
+
+            if (Input.GetKeyDown(KeyCode.Space) && canJump)
+            {
+                tutorialScreen.SetActive(false);
+                totalJumpCount++;
+                rb.velocity = Vector2.up * jumpForce;
+                canJump = false;
+                Invoke("JumpAllow", banJumpTimer);
+            }
         }
     }
 
@@ -141,15 +155,27 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        isOnGround = Physics2D.OverlapCircle(groundCheck.position, checkRadius, groundDefinition);
+        if (isGameOnProgress)
+        {
+            isOnGround = Physics2D.OverlapCircle(groundCheck.position, checkRadius, groundDefinition);
 
-        int sign = isLeftDirection == true ? -1 : 1; ;
-        transform.position = new Vector3(transform.position.x + (sign * speed / speedConverter), transform.position.y, transform.position.z);
+            int sign = isLeftDirection == true ? -1 : 1; ;
+            transform.position = new Vector3(transform.position.x + (sign * speed / speedConverter), transform.position.y, transform.position.z);
+        }
     }
 
     void Death()
     {
+        isGameOnProgress = false;
+        animator.enabled = false;
+        spriteRender.sprite = deathPlayer;
+        RotateDeathPlayer();
         coinCollecting.RewriteTotalCoins();
         playerScore.RewriteMaxScore();
+    }
+
+    void RotateDeathPlayer()
+    {
+        transform.rotation = Quaternion.Euler(180, 0, 0);
     }
 }
