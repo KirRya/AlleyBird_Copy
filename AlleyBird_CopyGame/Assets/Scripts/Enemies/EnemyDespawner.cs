@@ -17,12 +17,8 @@ public class EnemyDespawner : MonoBehaviour
     {
         if (collision.gameObject.CompareTag(enemyTag))
             enemySpawner.RespawnSingleEnemy();
-
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
         if (collision.gameObject.CompareTag(blockTag))
             blockSpawner.RespawnOneBlock();
+
     }
 }
