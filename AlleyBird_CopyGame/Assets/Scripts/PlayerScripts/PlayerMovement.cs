@@ -74,9 +74,17 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     DeathMenuShow deathMenu;
 
+    [SerializeField]
+    EnemySpawner enemySpawner;
+
     void Start()
     {
         extraJumpCount = extraJumpCountValue;
+    }
+
+    void IncreaseSpeed()
+    {
+        speed = speed + (speed / 100.0f);
     }
 
     private void Update()
@@ -121,6 +129,7 @@ public class PlayerMovement : MonoBehaviour
 
     void JumpAllow()
     {
+        IncreaseSpeed();
         playerScore.IncreaseScore();
         canJump = true;
         if(shouldRespawn)
